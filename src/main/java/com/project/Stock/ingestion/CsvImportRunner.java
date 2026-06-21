@@ -30,7 +30,6 @@ public class CsvImportRunner implements CommandLineRunner {
 
         String line;
 
-        // Skip header
         reader.readLine();
 
         while ((line = reader.readLine()) != null) {
@@ -54,8 +53,6 @@ public class CsvImportRunner implements CommandLineRunner {
             candle.setLow(new BigDecimal(row[4]));
             candle.setClose(new BigDecimal(row[5]));
             candle.setVolume(Long.parseLong(row[6]));
-
-            //System.out.println("Saving: " + row[0] + " " + row[1]);
 
             repository.save(candle);
         }

@@ -138,16 +138,12 @@ public class candleService {
             aggregated.setDatetime(
                     entry.getKey());
 
-            // Open = First Open
             aggregated.setOpen(
                     group.get(0).getOpen());
 
-            // Close = Last Close
             aggregated.setClose(
                     group.get(group.size() - 1)
                             .getClose());
-
-            // High = Max High
             BigDecimal high =
                     group.stream()
                             .map(StockCandle::getHigh)
@@ -156,7 +152,6 @@ public class candleService {
 
             aggregated.setHigh(high);
 
-            // Low = Min Low
             BigDecimal low =
                     group.stream()
                             .map(StockCandle::getLow)
@@ -164,8 +159,6 @@ public class candleService {
                             .orElse(BigDecimal.ZERO);
 
             aggregated.setLow(low);
-
-            // Volume = Sum Volume
             long volume =
                     group.stream()
                             .mapToLong(
